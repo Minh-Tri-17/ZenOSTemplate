@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Custom Styles -->
-    <link href="styles.css?v=9" rel="stylesheet">
+    <link href="styles.css?v=10" rel="stylesheet">
 </head>
 
 <body>
@@ -217,7 +217,7 @@
                 <div style="width: 33%;">
                     <div class="topbar-search">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input class="ghost-input" placeholder="Search systems..." type="text" style="border-radius: 9999px; padding-left: 40px;">
+                        <input class="form-control form-control-sm ghost-input" placeholder="Search systems..." type="text" style="border-radius: 9999px; padding-left: 40px;">
                     </div>
                 </div>
                 <div class="topbar-actions">
@@ -404,25 +404,25 @@
                 <!-- Action Bar -->
                 <div class="action-bar">
                     <div class="action-group">
-                        <button class="ghost-button">
+                        <button class="btn btn-sm ghost-button">
                             <i class="fa-solid fa-plus"></i>Create
                         </button>
-                        <button class="ghost-button">
+                        <button class="btn btn-sm ghost-button">
                             <i class="fa-solid fa-pen"></i>Update
                         </button>
-                        <button class="ghost-button btn-error">
+                        <button class="btn btn-sm ghost-button btn-error">
                             <i class="fa-solid fa-trash"></i>Delete
                         </button>
                     </div>
                     <div class="action-group">
-                        <button class="ghost-button text-on-surface">
+                        <button class="btn btn-sm ghost-button text-on-surface">
                             <i class="fa-solid fa-download"></i>Import
                         </button>
-                        <button class="ghost-button text-on-surface">
+                        <button class="btn btn-sm ghost-button text-on-surface">
                             <i class="fa-solid fa-upload"></i>Export
                         </button>
                         <div class="action-divider d-none d-sm-block"></div>
-                        <button class="ghost-button" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                        <button class="btn btn-sm ghost-button" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
                             <i class="fa-solid fa-filter"></i>Filter
                         </button>
                     </div>
@@ -433,19 +433,49 @@
                     <div class="glass-card filter-card">
                         <div class="filter-group">
                             <label>Status</label>
-                            <div class="filter-select-wrapper">
-                                <select class="ghost-input ghost-select">
-                                    <option value="all">All Active</option>
-                                    <option value="warning">Warning</option>
-                                    <option value="critical">Critical</option>
-                                </select>
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <div class="multi-select" data-multi-select>
+                                <button class="btn btn-sm ghost-input multi-select-toggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+                                    <span class="multi-select-tags" data-multi-select-tags>
+                                        <span class="multi-select-placeholder">Select status...</span>
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div class="multi-select-panel" role="listbox" aria-multiselectable="true">
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="all" data-label="All Active">
+                                        <span>All Active</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="warning" data-label="Warning">
+                                        <span>Warning</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="critical" data-label="Critical">
+                                        <span>Critical</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="optimal" data-label="Optimal">
+                                        <span>Optimal</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="offline" data-label="Offline">
+                                        <span>Offline</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="maintenance" data-label="Maintenance">
+                                        <span>Maintenance</span>
+                                    </label>
+                                    <label class="multi-select-option">
+                                        <input class="form-check-input" type="checkbox" value="pending" data-label="Pending">
+                                        <span>Pending</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="filter-group">
                             <label>Region</label>
                             <div class="filter-select-wrapper">
-                                <select class="ghost-input ghost-select">
+                                <select class="form-select form-select-sm ghost-input ghost-select">
                                     <option value="global">Global (All)</option>
                                     <option value="na">North America</option>
                                     <option value="eu">Europe</option>
@@ -456,10 +486,10 @@
                         </div>
                         <div class="filter-group">
                             <label>Identifier</label>
-                            <input class="ghost-input" placeholder="e.g. Node-7A" type="text">
+                            <input class="form-control form-control-sm ghost-input" placeholder="e.g. Node-7A" type="text">
                         </div>
                         <div class="flex-shrink-0">
-                            <button class="ghost-button text-on-surface-variant">
+                            <button class="btn btn-sm ghost-button text-on-surface-variant">
                                 <i class="fa-solid fa-xmark"></i>Clear
                             </button>
                         </div>
@@ -594,7 +624,7 @@
                         <div class="page-info">
                             <span>Items per page:</span>
                             <div class="page-select-wrapper">
-                                <select class="ghost-input page-select">
+                                <select class="form-select form-select-sm ghost-input page-select">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -604,17 +634,17 @@
                             <span class="ms-2">1-5 of 124</span>
                         </div>
                         <div class="pagination-controls">
-                            <button class="ghost-button page-btn" disabled>
+                            <button class="btn btn-sm ghost-button page-btn" disabled>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                             <div class="d-flex align-items-center gap-1">
-                                <button class="page-btn page-btn-active">1</button>
-                                <button class="ghost-button page-btn text-on-surface-variant">2</button>
-                                <button class="ghost-button page-btn text-on-surface-variant">3</button>
+                                <button class="btn btn-sm page-btn page-btn-active">1</button>
+                                <button class="btn btn-sm ghost-button page-btn text-on-surface-variant">2</button>
+                                <button class="btn btn-sm ghost-button page-btn text-on-surface-variant">3</button>
                                 <span class="page-ellipsis">...</span>
-                                <button class="ghost-button page-btn text-on-surface-variant">25</button>
+                                <button class="btn btn-sm ghost-button page-btn text-on-surface-variant">25</button>
                             </div>
-                            <button class="ghost-button page-btn page-btn-nav">
+                            <button class="btn btn-sm ghost-button page-btn page-btn-nav">
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
@@ -756,6 +786,62 @@
             });
         })();
     </script>
+    <!-- Multi Select Script -->
+    <script>
+        (function () {
+            const multiSelects = document.querySelectorAll('[data-multi-select]');
+
+            multiSelects.forEach(function (multiSelect) {
+                const toggle = multiSelect.querySelector('.multi-select-toggle');
+                const tags = multiSelect.querySelector('[data-multi-select-tags]');
+                const checkboxes = multiSelect.querySelectorAll('input[type="checkbox"]');
+
+                function renderTags() {
+                    const selected = Array.from(checkboxes).filter(function (checkbox) {
+                        return checkbox.checked;
+                    });
+
+                    tags.innerHTML = '';
+
+                    if (!selected.length) {
+                        tags.innerHTML = '<span class="multi-select-placeholder">Select status...</span>';
+                        return;
+                    }
+
+                    selected.forEach(function (checkbox) {
+                        const tag = document.createElement('span');
+                        tag.className = 'multi-select-tag';
+                        tag.innerHTML = `${checkbox.dataset.label}<button class="multi-select-remove" type="button" aria-label="Remove ${checkbox.dataset.label}">&times;</button>`;
+                        tag.querySelector('button').addEventListener('click', function (e) {
+                            e.stopPropagation();
+                            checkbox.checked = false;
+                            renderTags();
+                        });
+                        tags.appendChild(tag);
+                    });
+                }
+
+                toggle.addEventListener('click', function () {
+                    const isOpen = multiSelect.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                });
+
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.addEventListener('change', renderTags);
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!multiSelect.contains(e.target)) {
+                        multiSelect.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                renderTags();
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
