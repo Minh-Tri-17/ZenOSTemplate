@@ -2182,6 +2182,7 @@ body {
 
 .status-offline .status-dot {
   background-color: var(--color-on-surface-variant);
+  animation: none;
 }
 
 /* Pulsing beacon glow animation for status dots */
