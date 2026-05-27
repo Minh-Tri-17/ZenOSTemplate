@@ -89,8 +89,14 @@
   --badge-neutral-border: rgba(255, 255, 255, 0.1);
 
   /* Status Badges */
-  --status-optimal-bg: rgba(2, 103, 184, 0.2);
-  --status-optimal-border: rgba(164, 201, 255, 0.3);
+  --color-success: #10b981;
+  --color-on-success: #064e3b;
+  --color-warning: #f59e0b;
+  --color-on-warning: #78350f;
+  --status-optimal-bg: rgba(16, 185, 129, 0.15);
+  --status-optimal-border: rgba(16, 185, 129, 0.25);
+  --status-warning-bg: rgba(245, 158, 11, 0.15);
+  --status-warning-border: rgba(245, 158, 11, 0.25);
   --status-critical-bg: rgba(147, 0, 10, 0.2);
   --status-critical-border: rgba(255, 180, 171, 0.3);
   --status-offline-bg: rgba(255, 255, 255, 0.1);
@@ -207,8 +213,14 @@
   --badge-neutral-border: rgba(0, 0, 0, 0.08);
 
   /* Status Badges */
-  --status-optimal-bg: rgba(2, 103, 184, 0.1);
-  --status-optimal-border: rgba(2, 103, 184, 0.2);
+  --color-success: #059669;
+  --color-on-success: #ffffff;
+  --color-warning: #d97706;
+  --color-on-warning: #ffffff;
+  --status-optimal-bg: rgba(5, 150, 105, 0.08);
+  --status-optimal-border: rgba(5, 150, 105, 0.2);
+  --status-warning-bg: rgba(217, 119, 6, 0.08);
+  --status-warning-border: rgba(217, 119, 6, 0.2);
   --status-critical-bg: rgba(186, 26, 26, 0.08);
   --status-critical-border: rgba(186, 26, 26, 0.2);
   --status-offline-bg: rgba(0, 0, 0, 0.04);
@@ -238,6 +250,35 @@
   --lang-active-color: #2a1f1d;
   --lang-active-border: rgba(139, 111, 92, 0.3);
   --dropdown-item-hover-bg: rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Global Custom Scrollbar ===== */
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 /* ===== Base ===== */
@@ -321,6 +362,20 @@ body {
   border: 0.5px solid var(--glass-card-border);
   box-shadow: var(--glass-card-shadow);
   border-radius: 20px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 16px rgba(164, 201, 255, 0.1);
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 0 16px rgba(2, 103, 184, 0.04);
 }
 
 /* ===== Ghost Input (overrides Bootstrap .form-control / .form-select) ===== */
@@ -584,11 +639,11 @@ body {
 .sidebar-submenu {
   list-style: none;
   padding: 0;
-  margin: 4px 0 0 20px;
+  margin: 4px 0 4px 20px;
   border-left: 1px solid var(--submenu-border);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .submenu-link {
@@ -597,23 +652,37 @@ body {
   padding: 6px 16px;
   color: var(--color-on-surface-variant);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13.5px;
   border-radius: 0 8px 8px 0;
   transition: all 0.3s;
   text-decoration: none;
+  position: relative;
 }
 
-.submenu-link:hover {
-  color: var(--color-primary);
-  background-color: var(--nav-hover-bg);
+.submenu-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 1px;
+  background-color: var(--submenu-border);
+  transition: all 0.3s;
 }
 
-.submenu-link:hover span {
-  transform: translateX(4px);
+.submenu-link:hover::before {
+  width: 10px;
+  background-color: var(--color-primary);
 }
 
 .submenu-link span {
   transition: transform 0.3s;
+  padding-left: 4px;
+}
+
+.submenu-link:hover span {
+  transform: translateX(4px);
 }
 
 .sidebar-footer {
@@ -653,7 +722,7 @@ body {
   align-items: center;
   padding: 0 24px;
   flex-shrink: 0;
-  margin-left: 25px;
+  margin-left: 20px;
 }
 
 .topbar-search-wrapper {
@@ -1795,6 +1864,8 @@ body {
   overflow-y: auto !important; /* Force override of Bootstrap's overflow-y: hidden */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
+  box-shadow: inset -12px 0 12px -12px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s;
 }
 
 /* Custom scrollbars for the table container */
@@ -1904,12 +1975,22 @@ body {
 
 .status-optimal {
   background-color: var(--status-optimal-bg);
-  color: var(--color-secondary);
+  color: var(--color-success);
   border: 1px solid var(--status-optimal-border);
 }
 
 .status-optimal .status-dot {
-  background-color: var(--color-secondary);
+  background-color: var(--color-success);
+}
+
+.status-warning {
+  background-color: var(--status-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid var(--status-warning-border);
+}
+
+.status-warning .status-dot {
+  background-color: var(--color-warning);
 }
 
 .status-critical {
@@ -1962,14 +2043,37 @@ body {
 .load-fill {
   height: 100%;
   border-radius: 9999px;
+  background-size: 200% 100%;
+  animation: loadShimmer 2.5s infinite linear;
+}
+
+.load-fill-success {
+  background: linear-gradient(90deg, var(--color-success) 0%, rgba(255, 255, 255, 0.4) 50%, var(--color-success) 100%);
+  background-size: 200% 100%;
 }
 
 .load-fill-secondary {
-  background-color: var(--color-secondary);
+  background: linear-gradient(90deg, var(--color-secondary) 0%, rgba(255, 255, 255, 0.4) 50%, var(--color-secondary) 100%);
+  background-size: 200% 100%;
+}
+
+.load-fill-warning {
+  background: linear-gradient(90deg, var(--color-warning) 0%, rgba(255, 255, 255, 0.4) 50%, var(--color-warning) 100%);
+  background-size: 200% 100%;
 }
 
 .load-fill-error {
-  background-color: var(--color-error);
+  background: linear-gradient(90deg, var(--color-error) 0%, rgba(255, 255, 255, 0.4) 50%, var(--color-error) 100%);
+  background-size: 200% 100%;
+}
+
+@keyframes loadShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 /* ===== Action Cell ===== */
