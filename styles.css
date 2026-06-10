@@ -364,6 +364,7 @@ body {
   border: 0.5px solid var(--glass-card-border);
   box-shadow: var(--glass-card-shadow);
   border-radius: 20px;
+  padding: 1.5rem;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -644,9 +645,15 @@ body {
 }
 
 .form-check-input:checked {
-  background-color: var(--color-secondary) !important;
-  border-color: var(--color-secondary) !important;
+  background-color: #242426 !important;
+  border-color: #242426 !important;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
+}
+
+[data-theme="dark"] .form-check-input:checked {
+  background-color: #e2e2e9 !important;
+  border-color: #e2e2e9 !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23242426' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
 }
 
 .form-check-input:focus {
@@ -2307,8 +2314,8 @@ body {
 }
 
 .data-table .form-check-input:checked {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background-color: #242426;
+  border-color: #242426;
 }
 
 .data-table .form-check-input:focus {
@@ -3426,17 +3433,6 @@ body.login-body {
   );
 }
 
-.banner-image {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  bottom: 24px;
-  width: 35%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
 .banner-image img {
   max-height: 180px;
   max-width: 100%;
@@ -3665,4 +3661,201 @@ body.login-body {
 /* Hide ApexTree default watermark */
 #treeContainer text[style*="font-size: 10px"] {
   display: none !important;
+}
+
+/* ===== Chart Card Components ===== */
+
+/* Chart card heading titles */
+.chart-card-title {
+  font-weight: 600;
+}
+
+/* Chart menu (export/context) button — fixed square */
+.chart-menu-btn {
+  width: 32px;
+  height: 32px;
+}
+
+/* Chart render area — default large height */
+.chart-area {
+  min-height: 350px;
+  width: 100%;
+}
+
+/* Chart area — compact variant (Donut, Radar) */
+.chart-area--sm {
+  min-height: 300px;
+  width: 100%;
+}
+
+/* Chart area — tree/org chart scroll wrapper */
+.chart-area--tree {
+  min-height: 520px;
+  overflow-x: auto;
+}
+
+/* ApexTree org chart target container */
+#treeContainer {
+  width: 100%;
+  min-width: 900px;
+  height: 500px;
+}
+
+/* Top Food list scroll area */
+.menu-list-scroll {
+  max-height: 300px;
+  scrollbar-width: thin;
+}
+
+/* ===== About Modal ===== */
+
+.about-modal-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.about-modal-title {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.about-modal-version {
+  opacity: 0.85;
+}
+
+.about-modal-box {
+  background-color: var(--color-surface-container-low);
+  border: 0.5px solid var(--glass-card-border);
+}
+
+.about-modal-desc {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.about-modal-copy {
+  opacity: 0.75;
+}
+
+/* ===== Notifications Modal List ===== */
+
+.modal-notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Notification item inside modal — extends base .notification-item */
+.modal-notification-list .notification-item {
+  background-color: var(--color-surface-container-low);
+  border: 0.5px solid var(--glass-card-border);
+  cursor: pointer;
+}
+
+/* Notification item icon inside modal — slightly tighter border-radius than dropdown */
+.modal-notification-list .notification-item-icon {
+  border-radius: 10px;
+}
+
+/* Notification body text inside modal */
+.modal-notification-text {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ===== Login Page — Step Headings ===== */
+
+/* Smaller heading for Step 1 / Step 2 sub-forms (different from main login .form-title) */
+.form-title-step {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-on-surface);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* Extra top margin for the submit button in step forms */
+.btn-step-submit {
+  margin-top: 10px;
+}
+
+/* ===== Modal Progress Percent Badge ===== */
+
+/* Badge showing percentage in export/import progress bars */
+.progress-percent-badge {
+  font-size: 11px;
+  background-color: rgba(164, 201, 255, 0.16);
+  color: var(--color-on-secondary-container);
+}
+
+/* ===== Import Modal ===== */
+
+/* Upload hint subtext */
+.upload-hint-text {
+  font-size: 11px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Selected file name display inside badge */
+.selected-file-name {
+  font-size: 13px;
+}
+
+/* Small remove file button inside badge */
+.btn-remove-file {
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+}
+
+/* ===== Filter Select Wrapper Chevron ===== */
+
+/* Dropdown chevron icon positioned inside filter-select-wrapper */
+.filter-select-wrapper .select-chevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  pointer-events: none;
+  color: var(--color-on-surface-variant);
+}
+
+/* ===== Export Select Items Badge ===== */
+.export-select-badge {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  margin-top: 4px !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  color: var(--color-on-surface-variant) !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-theme="dark"] .export-select-badge {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+
+.export-radio-item.disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.export-radio-item.disabled input[type="radio"] {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.export-radio-item.disabled label {
+  cursor: not-allowed !important;
 }

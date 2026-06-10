@@ -29,8 +29,6 @@
     />
     <!-- Custom Styles -->
     <link href="styles.css?v=16" rel="stylesheet" />
-
-
   </head>
 
   <body>
@@ -950,7 +948,7 @@
             <!-- Banner -->
             <div class="col-lg-8">
               <div
-                class="glass-card banner-card h-100 p-4 d-flex justify-content-between align-items-center position-relative overflow-hidden"
+                class="glass-card banner-card h-100 d-flex justify-content-between align-items-center position-relative overflow-hidden"
               >
                 <div class="banner-content z-1">
                   <h2
@@ -1201,52 +1199,48 @@
           <div class="row g-4 mb-4">
             <!-- Column Chart -->
             <div class="col-lg-8">
-              <div class="glass-card p-4 h-100">
+              <div class="glass-card h-100">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h5
-                    class="text-title-md text-primary-color m-0"
-                    style="font-weight: 600"
+                    class="chart-card-title text-title-md text-primary-color m-0"
                   >
                     Column Chart
                   </h5>
                   <button
-                    class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px"
+                    class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                   >
                     <i class="fa-solid fa-bars"></i>
                   </button>
                 </div>
                 <div
                   id="columnChart"
-                  style="min-height: 350px; width: 100%"
+                  class="chart-area"
                 ></div>
               </div>
             </div>
 
             <!-- Line Chart -->
             <div class="col-lg-4">
-              <div class="glass-card p-4 h-100">
+              <div class="glass-card h-100">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h5
-                    class="text-title-md text-primary-color m-0"
-                    style="font-weight: 600"
+                    class="chart-card-title text-title-md text-primary-color m-0"
                   >
                     Line chart
                   </h5>
                   <button
-                    class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px"
+                    class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                   >
                     <i class="fa-solid fa-bars"></i>
                   </button>
                 </div>
                 <div
                   id="lineChart"
-                  style="min-height: 350px; width: 100%"
+                  class="chart-area"
                 ></div>
               </div>
             </div>
@@ -1259,51 +1253,47 @@
               <div class="row g-4 h-100">
                 <!-- Donut Chart -->
                 <div class="col-md-6">
-                  <div class="glass-card p-4 h-100">
+                  <div class="glass-card h-100">
                     <div
                       class="d-flex justify-content-between align-items-center mb-3"
                     >
-                      <h5
-                        class="text-title-md text-primary-color m-0"
-                        style="font-weight: 600"
+                       <h5
+                        class="chart-card-title text-title-md text-primary-color m-0"
                       >
                         Donut Chart
                       </h5>
                       <button
-                        class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                        style="width: 32px; height: 32px"
+                        class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                       >
                         <i class="fa-solid fa-bars"></i>
                       </button>
                     </div>
                     <div
                       id="donutChart"
-                      style="min-height: 300px; width: 100%"
+                      class="chart-area--sm"
                     ></div>
                   </div>
                 </div>
                 <!-- Radar Chart -->
                 <div class="col-md-6">
-                  <div class="glass-card p-4 h-100">
+                  <div class="glass-card h-100">
                     <div
                       class="d-flex justify-content-between align-items-center mb-3"
                     >
                       <h5
-                        class="text-title-md text-primary-color m-0"
-                        style="font-weight: 600"
+                        class="chart-card-title text-title-md text-primary-color m-0"
                       >
                         Radar Chart
                       </h5>
                       <button
-                        class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                        style="width: 32px; height: 32px"
+                        class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                       >
                         <i class="fa-solid fa-bars"></i>
                       </button>
                     </div>
                     <div
                       id="radarChart"
-                      style="min-height: 300px; width: 100%"
+                      class="chart-area--sm"
                     ></div>
                   </div>
                 </div>
@@ -1312,16 +1302,14 @@
 
             <!-- Right: Menu List -->
             <div class="col-lg-4">
-              <div class="glass-card p-4 h-100 d-flex flex-column">
-                <h5
-                  class="text-title-md text-primary-color mb-3"
-                  style="font-weight: 600"
-                >
+              <div class="glass-card h-100 d-flex flex-column">
+                  <h5
+                    class="chart-card-title text-title-md text-primary-color mb-3"
+                  >
                   Top Food & Beverage Items
                 </h5>
                 <div
-                  class="flex-grow-1 overflow-auto pe-1"
-                  style="max-height: 300px; scrollbar-width: thin"
+                  class="menu-list-scroll flex-grow-1 overflow-auto pe-1"
                 >
                   <!-- 1. Cà phê sữa đá -->
                   <div class="menu-item-pill color-green">
@@ -1386,52 +1374,48 @@
           <div class="row g-4 mb-4">
             <!-- Funnel Chart -->
             <div class="col-lg-6">
-              <div class="glass-card p-4 h-100">
+              <div class="glass-card h-100">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h5
-                    class="text-title-md text-primary-color m-0"
-                    style="font-weight: 600"
+                    class="chart-card-title text-title-md text-primary-color m-0"
                   >
                     Funnel chart
                   </h5>
                   <button
-                    class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px"
+                    class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                   >
                     <i class="fa-solid fa-bars"></i>
                   </button>
                 </div>
                 <div
                   id="funnelChart"
-                  style="min-height: 350px; width: 100%"
+                  class="chart-area"
                 ></div>
               </div>
             </div>
 
             <!-- Slope Chart -->
             <div class="col-lg-6">
-              <div class="glass-card p-4 h-100">
+              <div class="glass-card h-100">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h5
-                    class="text-title-md text-primary-color m-0"
-                    style="font-weight: 600"
+                    class="chart-card-title text-title-md text-primary-color m-0"
                   >
                     Slope chart
                   </h5>
                   <button
-                    class="btn btn-sm ghost-button p-0 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px"
+                    class="chart-menu-btn ghost-button btn btn-sm p-0 d-flex align-items-center justify-content-center"
                   >
                     <i class="fa-solid fa-bars"></i>
                   </button>
                 </div>
                 <div
                   id="slopeChart"
-                  style="min-height: 350px; width: 100%"
+                  class="chart-area"
                 ></div>
               </div>
             </div>
@@ -1440,13 +1424,12 @@
           <!-- Bottom Row: Organizational Chart (ApexTree) -->
           <div class="row mb-4">
             <div class="col-12">
-              <div class="glass-card p-4 overflow-hidden">
+              <div class="glass-card overflow-hidden">
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <h5
-                    class="text-title-md text-primary-color m-0"
-                    style="font-weight: 600"
+                    class="chart-card-title text-title-md text-primary-color m-0"
                   >
                     Organizational Structure
                   </h5>
@@ -1454,12 +1437,10 @@
                 </div>
                 <!-- Target for ApexTree -->
                 <div
-                  class="d-flex justify-content-center align-items-center w-100"
-                  style="min-height: 520px; overflow-x: auto"
+                  class="chart-area--tree d-flex justify-content-center align-items-center w-100"
                 >
                   <div
                     id="treeContainer"
-                    style="width: 100%; min-width: 900px; height: 500px"
                   ></div>
                 </div>
               </div>
@@ -1498,31 +1479,23 @@
               <img
                 src="images/logo.png"
                 alt="ZenOS Logo"
-                class="mb-3"
-                style="width: 64px; height: 64px; object-fit: contain"
+                class="about-modal-logo mb-3"
               />
               <h4
-                class="text-primary-color fw-bold mb-1"
-                style="font-size: 22px; letter-spacing: -0.02em"
+                class="about-modal-title text-primary-color fw-bold mb-1"
               >
                 ZenOS Enterprise
               </h4>
               <p
-                class="text-on-surface-variant small mb-3"
-                style="opacity: 0.85"
+                class="about-modal-version text-on-surface-variant small mb-3"
               >
                 Version 2.4.0 (Stable)
               </p>
               <div
-                class="p-3 rounded-3 mb-3"
-                style="
-                  background-color: var(--color-surface-container-low);
-                  border: 0.5px solid var(--glass-card-border);
-                "
+                class="about-modal-box p-3 rounded-3 mb-3"
               >
                 <p
-                  class="text-on-surface-variant mb-0"
-                  style="font-size: 13px; line-height: 1.6"
+                  class="about-modal-desc text-on-surface-variant mb-0"
                 >
                   ZenOS is a high-performance, real-time enterprise management
                   console designed for scalable server infrastructure, global
@@ -1530,8 +1503,7 @@
                 </p>
               </div>
               <p
-                class="text-on-surface-variant small mb-0"
-                style="opacity: 0.75"
+                class="about-modal-copy text-on-surface-variant small mb-0"
               >
                 &copy; 2026 ZenOS Corporation. All rights reserved.
               </p>
@@ -1599,28 +1571,12 @@
             <!-- Notification List -->
             <div
               class="modal-notification-list d-flex flex-column gap-2"
-              style="max-height: 400px; overflow-y: auto; padding-right: 4px"
             >
               <div
                 class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3"
-                style="
-                  background-color: var(--color-surface-container-low);
-                  border: 0.5px solid var(--glass-card-border);
-                  transition: all 0.25s ease;
-                  cursor: pointer;
-                "
               >
                 <div
                   class="notification-item-icon icon-primary-soft"
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                  "
                 >
                   <i class="fa-solid fa-server"></i>
                 </div>
@@ -1634,8 +1590,7 @@
                     <time class="text-muted small">2m ago</time>
                   </div>
                   <p
-                    class="text-on-surface-variant mb-0 mt-1 text-sm"
-                    style="font-size: 13px; line-height: 1.5"
+                    class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm"
                   >
                     12 nodes completed backup successfully. All systems
                     operational.
@@ -1645,24 +1600,9 @@
 
               <div
                 class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3"
-                style="
-                  background-color: var(--color-surface-container-low);
-                  border: 0.5px solid var(--glass-card-border);
-                  transition: all 0.25s ease;
-                  cursor: pointer;
-                "
               >
                 <div
                   class="notification-item-icon icon-secondary-soft"
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                  "
                 >
                   <i class="fa-solid fa-user-plus"></i>
                 </div>
@@ -1676,8 +1616,7 @@
                     <time class="text-muted small">18m ago</time>
                   </div>
                   <p
-                    class="text-on-surface-variant mb-0 mt-1 text-sm"
-                    style="font-size: 13px; line-height: 1.5"
+                    class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm"
                   >
                     Regional manager access is pending approval. Security
                     clearance verified.
@@ -1687,24 +1626,9 @@
 
               <div
                 class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3"
-                style="
-                  background-color: var(--color-surface-container-low);
-                  border: 0.5px solid var(--glass-card-border);
-                  transition: all 0.25s ease;
-                  cursor: pointer;
-                "
               >
                 <div
                   class="notification-item-icon icon-error-soft"
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                  "
                 >
                   <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
@@ -1718,8 +1642,7 @@
                     <time class="text-muted small">1h ago</time>
                   </div>
                   <p
-                    class="text-on-surface-variant mb-0 mt-1 text-sm"
-                    style="font-size: 13px; line-height: 1.5"
+                    class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm"
                   >
                     Store SG-04 exceeded the response threshold. Investigating
                     regional ISP.
@@ -1729,24 +1652,9 @@
 
               <div
                 class="notification-item d-flex align-items-start gap-3 p-3 rounded-3"
-                style="
-                  background-color: var(--color-surface-container-low);
-                  border: 0.5px solid var(--glass-card-border);
-                  transition: all 0.25s ease;
-                  cursor: pointer;
-                "
               >
                 <div
                   class="notification-item-icon icon-muted-soft"
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                  "
                 >
                   <i class="fa-solid fa-file-waveform"></i>
                 </div>
@@ -1760,8 +1668,7 @@
                     <time class="text-muted small">3h ago</time>
                   </div>
                   <p
-                    class="text-on-surface-variant mb-0 mt-1 text-sm"
-                    style="font-size: 13px; line-height: 1.5"
+                    class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm"
                   >
                     April payroll statement is ready for review. Secure download
                     token generated.

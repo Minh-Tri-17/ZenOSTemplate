@@ -688,6 +688,13 @@
                             <input class="ghost-input form-control form-control-sm" placeholder="e.g. Node-7A"
                                 type="text">
                         </div>
+                        <div class="filter-group d-flex flex-column align-items-start">
+                            <label>Is Delete</label>
+                            <div class="d-flex align-items-center" style="height: 38px;">
+                                <input class="form-check-input me-2" type="checkbox" id="filterIsDelete">
+                                <label class="text-on-surface-variant form-check-label fw-semibold" for="filterIsDelete" style="text-transform: none !important; margin-bottom: 0 !important; font-size: 13.5px !important; cursor: pointer;">Deleted</label>
+                            </div>
+                        </div>
                         <div class="flex-shrink-0">
                             <button class="ghost-button text-on-surface-variant btn btn-sm" id="filterClearBtn">
                                 <i class="fa-solid fa-xmark"></i>Clear
@@ -989,7 +996,7 @@
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                             <div class="d-flex align-items-center gap-1">
-                                <button class="page-btn text-on-surface-variant page-btn-active btn btn-sm">1</button>
+                                <button class="page-btn page-btn-active text-on-surface-variant btn btn-sm">1</button>
                                 <button class="ghost-button page-btn text-on-surface-variant btn btn-sm">2</button>
                                 <button class="ghost-button page-btn text-on-surface-variant btn btn-sm">3</button>
                                 <span class="page-ellipsis">...</span>
@@ -1020,32 +1027,32 @@
                         </div>
                         <div class="mb-3">
                             <label for="nodeStatusSelect" class="text-on-surface-variant form-label small fw-semibold">Status</label>
-                            <div class="filter-select-wrapper" style="position: relative;">
+                            <div class="filter-select-wrapper">
                                 <select class="ghost-input ghost-select form-select form-select-sm" id="nodeStatusSelect" required>
                                     <option value="optimal">Optimal</option>
                                     <option value="warning">Warning</option>
                                     <option value="critical">Critical</option>
                                     <option value="offline">Offline</option>
                                 </select>
-                                <i class="fa-solid fa-chevron-down" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; pointer-events: none; color: var(--color-on-surface-variant);"></i>
+                                <i class="select-chevron fa-solid fa-chevron-down"></i>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="nodeRegionSelect" class="text-on-surface-variant form-label small fw-semibold">Region</label>
-                            <div class="filter-select-wrapper" style="position: relative;">
+                            <div class="filter-select-wrapper">
                                 <select class="ghost-input ghost-select form-select form-select-sm" id="nodeRegionSelect" required>
                                     <option value="North America">North America</option>
                                     <option value="Europe">Europe</option>
                                     <option value="APAC">APAC</option>
                                     <option value="Global">Global</option>
                                 </select>
-                                <i class="fa-solid fa-chevron-down" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; pointer-events: none; color: var(--color-on-surface-variant);"></i>
+                                <i class="select-chevron fa-solid fa-chevron-down"></i>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center mb-1">
                                 <label for="nodeLoadSlider" class="text-on-surface-variant form-label small fw-semibold m-0">Load %</label>
-                                <span class="badge" id="nodeLoadValue" style="font-size: 11px; background-color: rgba(164, 201, 255, 0.16); color: var(--color-on-secondary-container);">50%</span>
+                                <span class="progress-percent-badge badge" id="nodeLoadValue">50%</span>
                             </div>
                             <input type="range" class="form-range" id="nodeLoadSlider" min="0" max="100" value="50">
                         </div>
@@ -1077,9 +1084,12 @@
                             <input type="radio" name="exportOption" id="exportCurrentPage" value="current">
                             <label for="exportCurrentPage">Current page</label>
                         </div>
-                        <div class="export-radio-item">
+                        <div class="export-radio-item" id="exportSelectItemsContainer">
                             <input type="radio" name="exportOption" id="exportSelectItems" value="select">
-                            <label for="exportSelectItems">Select Items</label>
+                            <label for="exportSelectItems" id="lblExportSelectItems" class="d-flex flex-column align-items-start">
+                                <span class="export-select-title">Select Items</span>
+                                <span class="export-select-badge" id="exportSelectedBadge">No items selected</span>
+                            </label>
                         </div>
                     </div>
                     
@@ -1087,7 +1097,7 @@
                     <div class="my-3 px-1" id="exportProgressContainer" style="display: none;">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <span class="text-on-surface-variant small fw-semibold" id="exportProgressStatus">Preparing export...</span>
-                            <span class="badge" id="exportProgressPercent" style="font-size: 11px; background-color: rgba(164, 201, 255, 0.16); color: var(--color-on-secondary-container);">0%</span>
+                            <span class="progress-percent-badge badge" id="exportProgressPercent">0%</span>
                         </div>
                         <div class="load-bar" style="width: 100%;">
                             <div class="load-fill load-fill-success" id="exportProgressFill" style="width: 0%"></div>
@@ -1114,12 +1124,12 @@
                     <div class="import-upload-zone mb-3" id="importUploadZone">
                         <i class="fa-solid fa-cloud-arrow-up fs-3 text-secondary mb-2"></i>
                         <p class="text-on-surface fw-semibold small mb-1">Click to upload or drag and drop</p>
-                        <p class="text-on-surface-variant xsmall mb-2" style="font-size: 11px; opacity: 0.8; margin: 0;">Any file format supported</p>
+                        <p class="upload-hint-text text-on-surface-variant xsmall mb-2">Any file format supported</p>
                         <input type="file" id="importFileInput" style="display: none;">
                         <div class="selected-file-badge" id="selectedFileBadge" style="display: none;">
                             <i class="fa-solid fa-file-code me-1 text-primary"></i>
-                            <span id="selectedFileName" class="fw-semibold text-primary" style="font-size: 13px;">file.csv</span>
-                            <button type="button" class="btn-close ms-2" id="btnRemoveFile" aria-label="Remove file" style="width: 8px; height: 8px; font-size: 8px;"></button>
+                            <span id="selectedFileName" class="selected-file-name fw-semibold text-primary">file.csv</span>
+                            <button type="button" class="btn-remove-file btn-close ms-2" id="btnRemoveFile" aria-label="Remove file"></button>
                         </div>
                     </div>
                     
@@ -1127,7 +1137,7 @@
                     <div class="my-3 px-1" id="importProgressContainer" style="display: none;">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <span class="text-on-surface-variant small fw-semibold" id="importProgressStatus">Preparing import...</span>
-                            <span class="badge" id="importProgressPercent" style="font-size: 11px; background-color: rgba(164, 201, 255, 0.16); color: var(--color-on-secondary-container);">0%</span>
+                            <span class="progress-percent-badge badge" id="importProgressPercent">0%</span>
                         </div>
                         <div class="load-bar" style="width: 100%;">
                             <div class="load-fill load-fill-success" id="importProgressFill" style="width: 0%"></div>
@@ -1152,15 +1162,15 @@
                 </div>
                 <div class="modal-body py-3">
                     <div class="text-center">
-                        <img src="images/logo.png" alt="ZenOS Logo" class="mb-3" style="width: 64px; height: 64px; object-fit: contain;">
-                        <h4 class="text-primary-color fw-bold mb-1" style="font-size: 22px; letter-spacing: -0.02em;">ZenOS Enterprise</h4>
-                        <p class="text-on-surface-variant small mb-3" style="opacity: 0.85;">Version 2.4.0 (Stable)</p>
-                        <div class="p-3 rounded-3 mb-3" style="background-color: var(--color-surface-container-low); border: 0.5px solid var(--glass-card-border);">
-                            <p class="text-on-surface-variant mb-0" style="font-size: 13px; line-height: 1.6;">
+                        <img src="images/logo.png" alt="ZenOS Logo" class="about-modal-logo mb-3">
+                        <h4 class="about-modal-title text-primary-color fw-bold mb-1">ZenOS Enterprise</h4>
+                        <p class="about-modal-version text-on-surface-variant small mb-3">Version 2.4.0 (Stable)</p>
+                        <div class="about-modal-box p-3 rounded-3 mb-3">
+                            <p class="about-modal-desc text-on-surface-variant mb-0">
                                 ZenOS is a high-performance, real-time enterprise management console designed for scalable server infrastructure, global region synchronization, and executive operations oversight.
                             </p>
                         </div>
-                        <p class="text-on-surface-variant small mb-0" style="opacity: 0.75;">&copy; 2026 ZenOS Corporation. All rights reserved.</p>
+                        <p class="about-modal-copy text-on-surface-variant small mb-0">&copy; 2026 ZenOS Corporation. All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -1191,9 +1201,9 @@
                     </div>
                     
                     <!-- Notification List -->
-                    <div class="modal-notification-list d-flex flex-column gap-2" style="max-height: 400px; overflow-y: auto; padding-right: 4px;">
-                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3" style="background-color: var(--color-surface-container-low); border: 0.5px solid var(--glass-card-border); transition: all 0.25s ease; cursor: pointer;">
-                            <div class="notification-item-icon icon-primary-soft" style="width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <div class="modal-notification-list d-flex flex-column gap-2">
+                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+                            <div class="notification-item-icon icon-primary-soft">
                                 <i class="fa-solid fa-server"></i>
                             </div>
                             <div class="flex-grow-1">
@@ -1201,12 +1211,12 @@
                                     <span class="text-primary-color fw-bold fs-6">Server cluster synced</span>
                                     <time class="text-muted small">2m ago</time>
                                 </div>
-                                <p class="text-on-surface-variant mb-0 mt-1 text-sm" style="font-size: 13px; line-height: 1.5;">12 nodes completed backup successfully. All systems operational.</p>
+                                <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">12 nodes completed backup successfully. All systems operational.</p>
                             </div>
                         </div>
                         
-                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3" style="background-color: var(--color-surface-container-low); border: 0.5px solid var(--glass-card-border); transition: all 0.25s ease; cursor: pointer;">
-                            <div class="notification-item-icon icon-secondary-soft" style="width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+                            <div class="notification-item-icon icon-secondary-soft">
                                 <i class="fa-solid fa-user-plus"></i>
                             </div>
                             <div class="flex-grow-1">
@@ -1214,12 +1224,12 @@
                                     <span class="text-primary-color fw-bold fs-6">New executive account</span>
                                     <time class="text-muted small">18m ago</time>
                                 </div>
-                                <p class="text-on-surface-variant mb-0 mt-1 text-sm" style="font-size: 13px; line-height: 1.5;">Regional manager access is pending approval. Security clearance verified.</p>
+                                <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">Regional manager access is pending approval. Security clearance verified.</p>
                             </div>
                         </div>
                         
-                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3" style="background-color: var(--color-surface-container-low); border: 0.5px solid var(--glass-card-border); transition: all 0.25s ease; cursor: pointer;">
-                            <div class="notification-item-icon icon-error-soft" style="width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+                            <div class="notification-item-icon icon-error-soft">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
                             </div>
                             <div class="flex-grow-1">
@@ -1227,12 +1237,12 @@
                                     <span class="text-primary-color fw-bold fs-6">POS latency warning</span>
                                     <time class="text-muted small">1h ago</time>
                                 </div>
-                                <p class="text-on-surface-variant mb-0 mt-1 text-sm" style="font-size: 13px; line-height: 1.5;">Store SG-04 exceeded the response threshold. Investigating regional ISP.</p>
+                                <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">Store SG-04 exceeded the response threshold. Investigating regional ISP.</p>
                             </div>
                         </div>
                         
-                        <div class="notification-item d-flex align-items-start gap-3 p-3 rounded-3" style="background-color: var(--color-surface-container-low); border: 0.5px solid var(--glass-card-border); transition: all 0.25s ease; cursor: pointer;">
-                            <div class="notification-item-icon icon-muted-soft" style="width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="notification-item d-flex align-items-start gap-3 p-3 rounded-3">
+                            <div class="notification-item-icon icon-muted-soft">
                                 <i class="fa-solid fa-file-waveform"></i>
                             </div>
                             <div class="flex-grow-1">
@@ -1240,7 +1250,7 @@
                                     <span class="text-primary-color fw-bold fs-6">Payroll report exported</span>
                                     <time class="text-muted small">3h ago</time>
                                 </div>
-                                <p class="text-on-surface-variant mb-0 mt-1 text-sm" style="font-size: 13px; line-height: 1.5;">April payroll statement is ready for review. Secure download token generated.</p>
+                                <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">April payroll statement is ready for review. Secure download token generated.</p>
                             </div>
                         </div>
                     </div>
@@ -1509,6 +1519,12 @@
                         $checkbox.trigger('change');
                     }
                 });
+
+                // 4. Reset Is Delete checkbox
+                const $isDeleteCb = $('#filterIsDelete');
+                if ($isDeleteCb.length) {
+                    $isDeleteCb.prop('checked', false);
+                }
             });
         })();
     </script>
@@ -1651,6 +1667,28 @@
                 const $checkedBoxes = $('.data-table tbody .row-checkbox:checked');
                 const checkedCount = $checkedBoxes.length;
                 const totalCount = $('.data-table tbody .row-checkbox').length;
+
+                // Update export modal select items count and badge state
+                const $exportSelectBadge = $('#exportSelectedBadge');
+                const $exportSelectRadio = $('#exportSelectItems');
+                const $exportSelectContainer = $('#exportSelectItemsContainer');
+                
+                if ($exportSelectBadge.length) {
+                    if (checkedCount === 0) {
+                        $exportSelectBadge.text('No items selected');
+                        $exportSelectRadio.prop('disabled', true);
+                        $exportSelectContainer.addClass('disabled');
+                        
+                        // If it was checked, switch selected export option to "All page"
+                        if ($exportSelectRadio.prop('checked')) {
+                            $('#exportAllPage').prop('checked', true);
+                        }
+                    } else {
+                        $exportSelectBadge.text(`${checkedCount} selected`);
+                        $exportSelectRadio.prop('disabled', false);
+                        $exportSelectContainer.removeClass('disabled');
+                    }
+                }
 
                 // 1. Update Select All state (checked, unchecked, or indeterminate)
                 if (checkedCount === 0) {
@@ -1862,7 +1900,17 @@
                 // Re-enable interactive elements
                 $btnConfirmExport.prop('disabled', false);
                 $btnCancelExport.prop('disabled', false);
-                $radioButtons.prop('disabled', false);
+                
+                // Re-enable radio buttons based on selection count
+                const checkedCount = $('.data-table tbody .row-checkbox:checked').length;
+                $radioButtons.each(function () {
+                    const $radio = $(this);
+                    if ($radio.attr('id') === 'exportSelectItems') {
+                        $radio.prop('disabled', checkedCount === 0);
+                    } else {
+                        $radio.prop('disabled', false);
+                    }
+                });
             }
 
             $exportModalElement.on('show.bs.modal', resetExportModal);
