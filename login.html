@@ -92,9 +92,29 @@
               </div>
               <button
                 type="submit"
-                class="glass-modal-btn-primary btn btn-primary w-100"
+                class="button w-100"
               >
-                <i class="fa-solid fa-right-from-bracket me-2"></i> Login
+                <span class="fold"></span>
+                <div class="points-wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">
+                  <i class="fa-solid fa-right-from-bracket me-2"></i> Login
+                </span>
               </button>
             </form>
           </div>
@@ -120,13 +140,126 @@
               </div>
               <button
                 type="submit"
-                class="glass-modal-btn-primary btn-step-submit btn btn-primary w-100"
+                class="button btn-step-submit w-100"
               >
-                <i class="fa-regular fa-envelope me-2"></i> Send Verification
-                Code
+                <span class="fold"></span>
+                <div class="points-wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">
+                  <i class="fa-regular fa-envelope me-2"></i> Send Verification Code
+                </span>
               </button>
               <div class="back-link-container">
                 <a href="#" class="link-back" id="btnBackToLogin"
+                  >Back to Login</a
+                >
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 2: Reset Password -->
+          <div class="form-section" id="resetPasswordStep2Section">
+            <h2 class="form-title-step">Bước 2: đặt lại mật khẩu</h2>
+            <form id="resetPasswordStep2Form" onsubmit="event.preventDefault()">
+              <div class="form-group">
+                <label
+                  for="resetUsername"
+                  class="text-on-surface-variant login-form-label small fw-semibold"
+                  >Tên đăng nhập</label
+                >
+                <input
+                  type="text"
+                  id="resetUsername"
+                  class="ghost-input form-control"
+                  placeholder="Nhập tên đăng nhập"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  for="resetNewPassword"
+                  class="text-on-surface-variant login-form-label small fw-semibold"
+                  >Mật khẩu mới</label
+                >
+                <input
+                  type="password"
+                  id="resetNewPassword"
+                  class="ghost-input form-control"
+                  placeholder="Nhập mật khẩu mới"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  for="resetPhone"
+                  class="text-on-surface-variant login-form-label small fw-semibold"
+                  >Số điện thoại đăng ký</label
+                >
+                <input
+                  type="text"
+                  id="resetPhone"
+                  class="ghost-input form-control"
+                  placeholder="Nhập số điện thoại đăng ký"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  for="resetOtp"
+                  class="text-on-surface-variant login-form-label small fw-semibold"
+                  >Otp</label
+                >
+                <input
+                  type="text"
+                  id="resetOtp"
+                  class="ghost-input form-control"
+                  placeholder="Nhập mã OTP"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="button btn-step-submit w-100"
+              >
+                <span class="fold"></span>
+                <div class="points-wrapper">
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                  <i class="point"></i>
+                </div>
+                <span class="inner">
+                  <i class="fa-solid fa-user-plus me-2"></i> Register
+                </span>
+              </button>
+              <div class="back-link-container">
+                <a href="#" class="link-back" id="btnStep2BackToLogin"
                   >Back to Login</a
                 >
               </div>
@@ -141,84 +274,60 @@
       document.addEventListener("DOMContentLoaded", () => {
         const loginSection = document.getElementById("loginFormSection");
         const resetSection = document.getElementById("resetFormSection");
+        const resetStep2Section = document.getElementById("resetPasswordStep2Section");
         const btnForgotPassword = document.getElementById("btnForgotPassword");
         const btnBackToLogin = document.getElementById("btnBackToLogin");
+        const btnStep2BackToLogin = document.getElementById("btnStep2BackToLogin");
         const formCard = document.getElementById("formCard");
 
         let isTransitioning = false;
 
-        
+        function transitionForms(fromSection, toSection, animationClass = "form-fade-in-slide-up") {
+          if (isTransitioning) return;
+          isTransitioning = true;
+
+          const initialHeight = formCard.offsetHeight;
+          formCard.style.height = `${initialHeight}px`;
+
+          fromSection.classList.add("form-fade-out");
+
+          setTimeout(() => {
+            fromSection.classList.remove("active-form", "form-fade-out");
+            toSection.classList.add("active-form", animationClass);
+
+            formCard.style.height = "auto";
+            const targetHeight = formCard.offsetHeight;
+            formCard.style.height = `${initialHeight}px`;
+
+            formCard.offsetHeight; // force reflow
+            formCard.style.height = `${targetHeight}px`;
+
+            setTimeout(() => {
+              toSection.classList.remove(animationClass);
+              formCard.style.height = "auto"; 
+              isTransitioning = false;
+            }, 350); 
+          }, 250);
+        }
+
+        // Forgot password click -> transitions to Step 1
         btnForgotPassword.addEventListener("click", (e) => {
           e.preventDefault();
-          if (isTransitioning) return;
-          isTransitioning = true;
-
-          
-          const initialHeight = formCard.offsetHeight;
-          formCard.style.height = `${initialHeight}px`;
-
-          
-          loginSection.classList.add("form-fade-out");
-
-          setTimeout(() => {
-            
-            loginSection.classList.remove("active-form", "form-fade-out");
-
-            
-            resetSection.classList.add("active-form", "form-fade-in-slide-up");
-
-            
-            formCard.style.height = "auto";
-            const targetHeight = formCard.offsetHeight;
-            formCard.style.height = `${initialHeight}px`;
-
-            
-            formCard.offsetHeight;
-            formCard.style.height = `${targetHeight}px`;
-
-            setTimeout(() => {
-              resetSection.classList.remove("form-fade-in-slide-up");
-              formCard.style.height = "auto"; 
-              isTransitioning = false;
-            }, 350); 
-          }, 250); 
+          transitionForms(loginSection, resetSection);
         });
 
-        
+        // Step 1 Back to login click -> transitions to Login
         btnBackToLogin.addEventListener("click", (e) => {
           e.preventDefault();
-          if (isTransitioning) return;
-          isTransitioning = true;
-
-          const initialHeight = formCard.offsetHeight;
-          formCard.style.height = `${initialHeight}px`;
-
-          
-          resetSection.classList.add("form-fade-out");
-
-          setTimeout(() => {
-            resetSection.classList.remove("active-form", "form-fade-out");
-
-            
-            loginSection.classList.add("active-form", "form-fade-in");
-
-            formCard.style.height = "auto";
-            const targetHeight = formCard.offsetHeight;
-            formCard.style.height = `${initialHeight}px`;
-
-            
-            formCard.offsetHeight;
-            formCard.style.height = `${targetHeight}px`;
-
-            setTimeout(() => {
-              loginSection.classList.remove("form-fade-in");
-              formCard.style.height = "auto"; 
-              isTransitioning = false;
-            }, 350); 
-          }, 250); 
+          transitionForms(resetSection, loginSection, "form-fade-in");
         });
 
-        
+        // Step 2 Back to login click -> transitions to Login
+        btnStep2BackToLogin.addEventListener("click", (e) => {
+          e.preventDefault();
+          transitionForms(resetStep2Section, loginSection, "form-fade-in");
+        });
+
         const loginForm = document.getElementById("loginForm");
         if (loginForm) {
           loginForm.addEventListener("submit", (e) => {
@@ -227,13 +336,22 @@
           });
         }
 
-        
+        // Submit Step 1 -> transitions to Step 2
         const resetForm = document.getElementById("resetForm");
         if (resetForm) {
           resetForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            alert("Verification code has been sent!");
-            btnBackToLogin.click();
+            transitionForms(resetSection, resetStep2Section);
+          });
+        }
+
+        // Submit Step 2 -> transitions to Login
+        const resetPasswordStep2Form = document.getElementById("resetPasswordStep2Form");
+        if (resetPasswordStep2Form) {
+          resetPasswordStep2Form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Password has been reset successfully!");
+            transitionForms(resetStep2Section, loginSection, "form-fade-in");
           });
         }
       });
