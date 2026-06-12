@@ -142,37 +142,49 @@ Trang đăng nhập tối giản và sang trọng. Sử dụng bố cục 2 cộ
 ### 4.1. Cấu Trúc Giao Diện
 
 - **Cột Trái (`.login-left`)**: Chiếm 50% chiều rộng trên màn hình lớn. Chứa `.art-frame` và thẻ ảnh `<img src="images/topic.png" class="art-image">`.
-- **Cột Phải (`.login-right`)**: Chứa `.login-card` (id: `#formCard`) có nền kính mờ. Bên trong chứa 2 phân đoạn form (chỉ 1 phân đoạn hiển thị tại một thời điểm nhờ class `.active-form`):
-  1.  **Form Đăng Nhập (`#loginFormSection`)**: Nhập Username, Password, nút ghi nhớ mật khẩu, nút liên kết "Forgot password?" và nút submit "Login" có biểu tượng đăng nhập.
-  2.  **Form Reset Mật Khẩu (`#resetFormSection`)**: Nhập Email, nút submit "Send Verification Code" và liên kết "Back to Login".
+- **Cột Phải (`.login-right`)**: Chứa `.login-card` (id: `#formCard`) có nền kính mờ. Bên trong chứa 3 phân đoạn form (chỉ 1 phân đoạn hiển thị tại một thời điểm nhờ class `.active-form`):
+  1.  **Form Đăng Nhập (`#loginFormSection`)**: Nhập Username, Password, nút ghi nhớ mật khẩu, nút liên kết "Forgot password?" và nút submit "Login" có hiệu ứng động.
+  2.  **Form Reset Mật Khẩu Bước 1 (`#resetFormSection`)**: Nhập Email, nút submit "Send Verification Code" và liên kết "Back to Login".
+  3.  **Form Đặt Lại Mật Khẩu Bước 2 (`#resetPasswordStep2Section`)**: Nhập Tên đăng nhập (Username), Mật khẩu mới (New Password), Số điện thoại đăng ký (Phone), OTP. Nút submit "Register" và liên kết "Back to Login".
 
 ### 4.2. Logic JavaScript Chuyển Đổi Form Mượt Mà (Dynamic Height Transition)
 
-Để tạo trải nghiệm mượt mà, khi người dùng click vào "Forgot password?" hoặc "Back to Login", thẻ `#formCard` sẽ tự động tính toán chiều cao đích và thực hiện chuyển tiếp hiệu ứng trượt/phai mờ:
+Để tạo trải nghiệm mượt mà khi di chuyển giữa các bước, hàm dùng chung `transitionForms(fromSection, toSection, animationClass)` tự động tính toán chiều cao đích và thực hiện chuyển tiếp hiệu ứng trượt/phai mờ:
 
 ```javascript
-// Minh họa thuật toán chuyển tiếp form
-const initialHeight = formCard.offsetHeight;
-formCard.style.height = `${initialHeight}px`; // Cố định chiều cao hiện tại
+function transitionForms(fromSection, toSection, animationClass = "form-fade-in-slide-up") {
+  if (isTransitioning) return;
+  isTransitioning = true;
 
-loginSection.classList.add("form-fade-out"); // Phai mờ form hiện tại
-
-setTimeout(() => {
-  loginSection.classList.remove("active-form", "form-fade-out");
-  resetSection.classList.add("active-form", "form-fade-in-slide-up"); // Hiển thị form mới dạng ẩn
-
-  formCard.style.height = "auto";
-  const targetHeight = formCard.offsetHeight; // Lấy chiều cao cần có của form mới
+  const initialHeight = formCard.offsetHeight;
   formCard.style.height = `${initialHeight}px`;
 
-  formCard.offsetHeight; // Trực quan hóa kích hoạt reflow
-  formCard.style.height = `${targetHeight}px`; // Thực hiện hiệu ứng transition chiều cao
+  fromSection.classList.add("form-fade-out");
 
   setTimeout(() => {
-    resetSection.classList.remove("form-fade-in-slide-up");
-    formCard.style.height = "auto"; // Trả lại tự động để co giãn nếu cần
-  }, 350);
-}, 250);
+    fromSection.classList.remove("active-form", "form-fade-out");
+    toSection.classList.add("active-form", animationClass);
+
+    formCard.style.height = "auto";
+    const targetHeight = formCard.offsetHeight;
+    formCard.style.height = `${initialHeight}px`;
+
+    formCard.offsetHeight; // force reflow
+    formCard.style.height = `${targetHeight}px`;
+
+    setTimeout(() => {
+      toSection.classList.remove(animationClass);
+      formCard.style.height = "auto"; 
+      isTransitioning = false;
+    }, 350); 
+  }, 250);
+}
+
+// Logic chuyển đổi:
+// 1. Click "Forgot password?" -> Transition từ Login sang Step 1
+// 2. Submit Step 1 -> Transition từ Step 1 sang Step 2
+// 3. Submit Step 2 -> Hiện thông báo thành công và Transition về Login
+// 4. Click "Back to Login" tại các bước -> Transition về Login
 ```
 
 ---
